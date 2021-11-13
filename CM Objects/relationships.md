@@ -29,19 +29,27 @@ Okay, so in this software, the main objects are as follows:
 
 ## Attributes
 ### Location
-Name
+- Name
+- __**Playlist**__s
 ### NPC
-Name
-_NPC Type_
-Stats
-_Catalogue_
+- Name
+- _NPC Type_
+- Stats
+- _Catalogue_
 ### Event
-Name
-_Date_
+- Name
+
+- _Date_
 ### Item
-_Item Type_
-_Tag_
+- _Item Type_
+
+- _Tag_
 ### Note
-_**Notepad**_s
+- __**Notepad**__s
 
 ## Secondary Objects
+- NPC Type
+- Catalogue
+- Date
+- Item Type
+- Notepad
