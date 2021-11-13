@@ -1,21 +1,23 @@
 # Object Relationships
 ## Contents
- - [Key Objects](#the-key-objects)
- - [Relationships](#relationships)
- - [Attributes](#attributes)
-   - [Location](#location)
-   - [NPC](#npc)
-   - [Event](#event)
-   - [Item](#item)
-   - [Note](#note)
-
+- [The Key Objects](#the-key-objects)
+- [Relationships](#relationships)
+- [Attributes](#attributes)
+  - [Name](#name)
+  - [Tags](#tags)
+- [Secondary Objects](#secondary-objects)
+  - [Playlists](#playlists)
+  - [Stat Block](#stat-block)
+  - [Catalogue](#catalogue)
+  - [Date](#date)
+  - [Note](#notes)
+- [On Template Creation](#on-template-creation)
 ## The Key Objects
 Okay, so in this software, the main objects are as follows:
 - Locations
 - NPCs
-- Events,
-- Items and
-- Notes
+- Events &
+- Items
 
 ## Relationships
 - Locations can have child Locations (As Castle to City)
@@ -25,31 +27,42 @@ Okay, so in this software, the main objects are as follows:
 - Items can have child Items (As Chest to Weapon)
 - NPCs can participate in Events (As Leader to Meeting)
 - NPCs can have Items (As Leader to Ring)
-- Every Object has Notes
 
 ## Attributes
-### Location
-- Name
-- __**Playlist**__s
-### NPC
-- Name
-- _NPC Type_
-- Stats
-- _Catalogue_
-### Event
-- Name
-
-- _Date_
-### Item
-- _Item Type_
-
-- _Tag_
-### Note
-- __**Notepad**__s
-
+### Name
+A unique string identifier.
+### Tags
+Tags can:
+- Allow for filtering
+- Communicate a method of use, type of object, or 
+- Can communicates item collections or lore
 ## Secondary Objects
-- NPC Type
-- Catalogue
-- Date
-- Item Type
-- Notepad
+#### Playlists
+A collection of music *Playlists* used for immersion.
+
+Used in locations.
+### Stat Block
+A Collection of 6 *Stats* --> (STR, DEX, CON, WIS, INT & CHA)
+
+Used in NPCs
+### Catalogue
+An object used to list the relation between an item and it's cost given that unique *Catalogue*
+
+Used in NPCs
+### Date
+An object used in the *Calendar* to keep track of time and for *Automation*
+
+Used in Events
+
+### Notes
+All Key Objects can have a collection of *Notepad*s.
+A *Notepad* is an object that can hold either:
+- Written Information or
+- Picture Information
+I'm sure what a *Notepad* can hold with develop as development goes on.
+
+## On Template Creation
+I want this application to allow creation of certain types of objects.
+So, the user can create 'templates' that will hold:
+- Notes
+- Tags
