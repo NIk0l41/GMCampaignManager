@@ -1,25 +1,23 @@
 # Object Relationships
 ## Contents
- - [Key Objects](##the-key-objects)
- - [Relationships](##relationships)
- - [Attributes](##attributes)
-   - [Location](###location)
-   - [NPC](###npc)
-   - [Event](###event)
-   - [Item](###item)
-   - [Note](###note)
+ - [Key Objects](#the-key-objects)
+ - [Relationships](#relationships)
+ - [Attributes](#attributes)
+   - [Location](#location)
+   - [NPC](#npc)
+   - [Event](#event)
+   - [Item](#item)
+   - [Note](#note)
 
 ## The Key Objects
----
 Okay, so in this software, the main objects are as follows:
 - Locations
 - NPCs
 - Events,
 - Items and
 - Notes
----
+
 ## Relationships
----
 - Locations can have child Locations (As Castle to City)
 - NPCs can be found in Locations (As Leader to Castle)
 - Events occur at Locations (As Meeting to Throne Room)
@@ -30,7 +28,6 @@ Okay, so in this software, the main objects are as follows:
 - Every Object has Notes
 
 ## Attributes
----
 ### Location
 Name
 ### NPC
