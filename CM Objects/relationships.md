@@ -66,3 +66,4 @@ I want this application to allow creation of certain types of objects.
 So, the user can create 'templates' that will hold:
 - Notes
 - Tags
+That can later be edited to suit the context of the object.
