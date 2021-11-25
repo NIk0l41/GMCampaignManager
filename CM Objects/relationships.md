@@ -19,6 +19,9 @@ Okay, so in this software, the main objects are as follows:
 - Events &
 - Items
 
+Then, for in-game, we have:
+- Sessions
+
 ## Relationships
 - Locations can have child Locations (As Castle to City)
 - NPCs can be found in Locations (As Leader to Castle)
@@ -27,6 +30,8 @@ Okay, so in this software, the main objects are as follows:
 - Items can have child Items (As Chest to Weapon)
 - NPCs can participate in Events (As Leader to Meeting)
 - NPCs can have Items (As Leader to Ring)
+
+- Sessions provide quick access to all objects.
 
 ## Attributes
 ### Name
@@ -67,3 +72,8 @@ So, the user can create 'templates' that will hold:
 - Notes
 - Tags
 That can later be edited to suit the context of the object.
+
+## On Sessions
+The view that contains all data from the database is too overwhelming during a single session.
+So, the GM will select what information will (or may be) useful during a session, and the view will only show that during 'Play' mode, and the Session Editor.
+r
