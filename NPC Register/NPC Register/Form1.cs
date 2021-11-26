@@ -22,5 +22,10 @@ namespace NPC_Register
         {
 
         }
+
+        private void pnlWorkSpace_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
