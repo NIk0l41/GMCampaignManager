@@ -41,3 +41,6 @@ That'll have to be tomorrows job :P
 #### To Do
 - [ ] Understand what the project aims to achieve.
 - [ ] Add 'Session' object framework. 
+
+### Devlog 4/12/21
+#### 
