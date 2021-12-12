@@ -13,7 +13,7 @@ using System.IO;
 namespace NPC_Register
 {
     public partial class Form1 : Form
-    {   
+    {
         const string path = @"C:\Users\Nicholas Maver\Documents\CSSQLtmp";
         const string filePath = path + @"\data.db";
         const string conPath = @"URI=file:" + filePath;
@@ -30,14 +30,16 @@ namespace NPC_Register
 
         private void tsCreateDB_Click(object sender, EventArgs e)
         {
-            
-            if (!Directory.Exists(path)) {
+
+            if (!Directory.Exists(path))
+            {
                 Directory.CreateDirectory(path);
             }
             bool debugging = true;
 
             ///Database Creation
-            if (debugging && File.Exists(filePath)) {
+            if (debugging && File.Exists(filePath))
+            {
                 File.Delete(filePath);
             }
 
@@ -48,6 +50,7 @@ namespace NPC_Register
             con.Open();
 
             ///Database Structure.
+            string createTables = File.ReadAllText(@"C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\SQLite Commands\Table Creation.sql");
             string createTblNpc = @"CREATE TABLE NPC(
                                     npcID INTEGER PRIMARY KEY AUTOINCREMENT,
                                     npcName varchar(255) NOT NULL
@@ -56,15 +59,15 @@ namespace NPC_Register
             //This article doesn't recommend its use, but for now it'll do
 
             ///SQLite Commands
-            SQLiteCommand cmd = new SQLiteCommand(con);
+            SQLiteCommand cmd = con.CreateCommand();
 
-            cmd.CommandText = createTblNpc;
+            cmd.CommandText = createTables;
             cmd.ExecuteNonQuery();
 
-            cmd.CommandText = "INSERT INTO NPC(npcName) VALUES('Johnny');";
+            cmd.CommandText = "INSERT INTO NPCs(npcName) VALUES('Johnny');";
             cmd.ExecuteNonQuery();
 
-            cmd.CommandText = "INSERT INTO NPC(npcName) VALUES('Savaal');";
+            cmd.CommandText = "INSERT INTO NPCs(npcName) VALUES('Savaal');";
             cmd.ExecuteNonQuery();
 
             MessageBox.Show("Executed Non Queries");
@@ -95,5 +98,50 @@ namespace NPC_Register
 
         }
 
+        #region GMCM SQLite Library
+
+        void PopulateDatabase(SQLiteCommand cmd) {
+            /// Create Blank Item Templates
+            SqliteNoQuery("INSERT INTO ItemTemplates(itemName) VALUES('Iron Sword')", cmd);
+
+            //Explicitly for a test DB
+            DPopulateDB(cmd);
+        }
+
+        void DPopulateDB(SQLiteCommand cmd) {
+            
+        }
+
+        void CreateNpc(SQLiteConnection connection){
+            // Declare Command
+            SQLiteCommand cmd = connection.CreateCommand();
+            /// Create Inventory
+            // Create Instance from Template
+
+            SqliteNoQuery("INSERT INTO ItemInstances()");
+        }
+
+        /// <summary>
+        /// Used to Change the Database.
+        /// </summary>
+        /// <param name="command">The SQLite command.</param>
+        /// <param name="cmd">The database connection to utilise.</param>
+        private void SqliteNoQuery(string command, SQLiteCommand cmd) {
+            cmd.CommandText = command;
+            cmd.ExecuteNonQuery();
+        }
+
+        private DataTable SqliteQuery(string query, SQLiteConnection connection) {
+            if(string.IsNullOrEmpty(query.Trim()))
+                return null;
+
+            SQLiteDataAdapter da = new SQLiteDataAdapter(query, connection);
+            var dt = new DataTable();
+            da.Fill(dt);
+            da.Dispose();
+            return dt;
+        }
+
+        #endregion
     }
 }
