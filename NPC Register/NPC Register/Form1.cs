@@ -64,13 +64,13 @@ namespace NPC_Register
             cmd.CommandText = createTables;
             cmd.ExecuteNonQuery();
 
-            cmd.CommandText = "INSERT INTO NPCs(npcName) VALUES('Johnny');";
-            cmd.ExecuteNonQuery();
+            //cmd.CommandText = "INSERT INTO NPCs(npcName) VALUES('Johnny');";
+            //cmd.ExecuteNonQuery();
 
-            cmd.CommandText = "INSERT INTO NPCs(npcName) VALUES('Savaal');";
-            cmd.ExecuteNonQuery();
+            //cmd.CommandText = "INSERT INTO NPCs(npcName) VALUES('Savaal');";
+            //cmd.ExecuteNonQuery();
 
-            MessageBox.Show("Executed Non Queries");
+            //MessageBox.Show("Executed Non Queries");
 
             ///SQLite Close Connection
             con.Dispose();
@@ -85,14 +85,24 @@ namespace NPC_Register
 
             ///SQLiteCommands
             SQLiteCommand cmd = new SQLiteCommand(con);
-            string query = "SELECT * FROM NPC";
+            //Select Data from NPCs
+            string query = "SELECT * FROM NPCs";
             SQLiteDataAdapter adapter = new SQLiteDataAdapter(query, con);
             DataSet set = new DataSet();
-            adapter.Fill(set, "NPC");
+            adapter.Fill(set, "NPCs");
+            //Select Data from ItemTemplates
+            query = "SELECT * FROM ItemTemplates";
+            adapter = new SQLiteDataAdapter(query, con);
+            adapter.Fill(set, "ItemTemplates");
+
             //No need to keep the connection up longer than needed.
             con.Close();
+            //Fill Grids
             grid.DataSource = set;
-            grid.DataMember = "NPC";
+            grid.DataMember = "NPCs";
+
+            grid2.DataSource = set;
+            grid2.DataMember = "ItemTemplates";
             //set.Tables[0].Rows[0].ItemArray[1].ToString();
             //DataTable npc = set.Tables[0];
 
@@ -118,7 +128,6 @@ namespace NPC_Register
             /// Create Inventory
             // Create Instance from Template
 
-            SqliteNoQuery("INSERT INTO ItemInstances()");
         }
 
         /// <summary>

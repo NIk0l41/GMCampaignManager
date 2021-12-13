@@ -45,6 +45,7 @@
             this.tsOpenDB = new System.Windows.Forms.ToolStripButton();
             this.tsCreateDB = new System.Windows.Forms.ToolStripButton();
             this.dlgCreate = new System.Windows.Forms.FolderBrowserDialog();
+            this.grid2 = new System.Windows.Forms.DataGridView();
             this.pnlTop.SuspendLayout();
             this.pnlNPC.SuspendLayout();
             this.pnlWorkTools.SuspendLayout();
@@ -52,6 +53,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             this.panel1.SuspendLayout();
             this.tsTop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grid2)).BeginInit();
             this.SuspendLayout();
             // 
             // itemList
@@ -121,6 +123,7 @@
             // pnlWorkSpace
             // 
             this.pnlWorkSpace.BackColor = System.Drawing.Color.DarkTurquoise;
+            this.pnlWorkSpace.Controls.Add(this.grid2);
             this.pnlWorkSpace.Controls.Add(this.grid);
             this.pnlWorkSpace.Controls.Add(this.panel1);
             this.pnlWorkSpace.Location = new System.Drawing.Point(189, 89);
@@ -194,6 +197,14 @@
             this.tsCreateDB.Text = "Create DB";
             this.tsCreateDB.Click += new System.EventHandler(this.tsCreateDB_Click);
             // 
+            // grid2
+            // 
+            this.grid2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grid2.Location = new System.Drawing.Point(275, 199);
+            this.grid2.Name = "grid2";
+            this.grid2.Size = new System.Drawing.Size(240, 150);
+            this.grid2.TabIndex = 2;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -213,6 +224,7 @@
             this.panel1.ResumeLayout(false);
             this.tsTop.ResumeLayout(false);
             this.tsTop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grid2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -236,6 +248,7 @@
         private System.Windows.Forms.ToolStripButton tsCreateDB;
         private System.Windows.Forms.FolderBrowserDialog dlgCreate;
         private System.Windows.Forms.DataGridView grid;
+        private System.Windows.Forms.DataGridView grid2;
     }
 }
 

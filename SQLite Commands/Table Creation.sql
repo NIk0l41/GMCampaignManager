@@ -22,8 +22,9 @@ CREATE TABLE ItemTemplates(
 );
 
 CREATE TABLE ItemInstances(
+	-- Do ItemInstances need to reference an ItemTemplate?
 	instanceID INTEGER PRIMARY KEY AUTOINCREMENT,
-	itemID INTEGER NOT NULL,
+	instanceName VARCHAR(255) NOT NULL,
 	inventoryID INTEGER,
 	FOREIGN KEY (inventoryID) REFERENCES ItemInstances(instanceID)
 );
