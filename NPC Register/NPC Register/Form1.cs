@@ -73,7 +73,7 @@ namespace NPC_Register
             //MessageBox.Show("Executed Non Queries");
 
             ///SQLite Close Connection
-            con.Dispose();
+            con.Close();
 
         }
 
@@ -103,7 +103,7 @@ namespace NPC_Register
 
             grid2.DataSource = set;
             grid2.DataMember = "ItemTemplates";
-            //set.Tables[0].Rows[0].ItemArray[1].ToString();
+            MessageBox.Show(set.Tables[0].TableName);
             //DataTable npc = set.Tables[0];
 
         }

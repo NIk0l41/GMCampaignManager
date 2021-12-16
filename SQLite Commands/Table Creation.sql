@@ -47,6 +47,7 @@ CREATE TABLE CatalogueEntries(
 	itemID INTEGER NOT NULL,
 	price VARCHAR(255) NOT NULL,
 	PRIMARY KEY (catalogueID, itemID),
+	FOREIGN KEY (itemID) REFERENCES ItemTemplates(itemID),
 	FOREIGN KEY (catalogueID) REFERENCES CatalogueData(catalogueID)
 );
 

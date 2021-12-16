@@ -2,7 +2,7 @@
 using System.Data;
 using System.Data.SQLite;
 
-namespace GMCM
+namespace NPC_Register
 {
     class DataWorker
     {
@@ -15,7 +15,7 @@ namespace GMCM
             this.connection = connection;
             OnProjectLoad();
         }
-
+        
         public void OnProjectLoad() {
             ///     `Database >> DataSet`
             connection.Open();
@@ -29,12 +29,12 @@ namespace GMCM
         {
             if (string.IsNullOrEmpty(tableName.Trim()))
                 return null;
-            string query = "SELECT * FROM " + tableName;
-            DataTable output = new DataTable(tableName);
+            var query = "SELECT * FROM " + tableName;
+            var output = new DataTable(tableName);
 
             try
             {
-                SQLiteDataAdapter adapter = new SQLiteDataAdapter(query, connection);
+                var adapter = new SQLiteDataAdapter(query, connection);
                 adapter.Fill(output);
                 adapter.Dispose();
             }
@@ -44,6 +44,8 @@ namespace GMCM
             }
             return output;
         }
+
+
 
         public class Writer
         {

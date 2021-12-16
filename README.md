@@ -1,4 +1,34 @@
 # GMCampaignManager
+### Project Thesis
+Table-Top Roleplaying Games (TTRPGs) have laid the foundation for interactive
+media in our society. The entire experience of this medium aims to create
+an interactive story shared by and created by all at the table.
+
+This hobby is typically a pen-and-paper game, however modern tools
+such as 'DnD Beyond' aim to substitute the typical experience for 
+an easy to use and more effective means of creating and sharing
+important information.
+
+However, this tools and other tools like it only appear to slightly
+augment the process of Player to Game Master communication, and does not
+take full advantage of what digital technology can offer.
+
+Using the [SAMR Model for classroom technology](https://www.3plearning.com/blog/connectingsamrmodel/)
+, we can see that digital tools like 'DnD Beyond' truly enhance the experience
+through Augmentation, where "technology acts as a direct substitute,
+with functional improvement".
+
+Be that as it may, digital technology has such untapped potential to Modify
+and even completely Redefine what a digitally enhanced TTRPG can offer
+its players and Game Masters.
+
+This project will take a small step into the water that is
+TTRPG digital enchancement to see what can be achieved on the Game Masters
+end. Considering the amount of information they have to create, store,
+and memorise, this tool aims to redesign how Game Masters interact with
+their worlds through:
+1. 
+
 #### Project Summary
 To create an application that addresses:
 1. Game Master Creative Freedom
