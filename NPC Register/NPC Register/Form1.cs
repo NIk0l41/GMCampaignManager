@@ -18,6 +18,19 @@ namespace NPC_Register
         const string filePath = path + @"\data.db";
         const string conPath = @"URI=file:" + filePath;
 
+        //Workers
+        public DatabasePriest priestSylas;
+
+        ///Data Objects
+        // Global Dataset
+        public DataSet publicData;
+        // Global TableIndex
+        public Dictionary<string, int> tableIndex;
+        // Global RowIndexes
+        public Dictionary<string, int>[] rowIndexes;
+
+
+
         public Form1()
         {
             InitializeComponent();

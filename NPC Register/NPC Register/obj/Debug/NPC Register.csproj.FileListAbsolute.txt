@@ -11,3 +11,16 @@ C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\NPC Register\NPC Regist
 C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\NPC Register\NPC Register\obj\Debug\NPC Register.exe
 C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\NPC Register\NPC Register\obj\Debug\NPC Register.pdb
 C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\NPC Register\NPC Register\obj\Debug\NPC Register.csproj.CopyComplete
+C:\Users\Nic\Desktop\Github Repos\GMCampaignManager\NPC Register\NPC Register\bin\Debug\NPC Register.exe.config
+C:\Users\Nic\Desktop\Github Repos\GMCampaignManager\NPC Register\NPC Register\bin\Debug\NPC Register.exe
+C:\Users\Nic\Desktop\Github Repos\GMCampaignManager\NPC Register\NPC Register\bin\Debug\NPC Register.pdb
+C:\Users\Nic\Desktop\Github Repos\GMCampaignManager\NPC Register\NPC Register\bin\Debug\System.Data.SQLite.dll
+C:\Users\Nic\Desktop\Github Repos\GMCampaignManager\NPC Register\NPC Register\bin\Debug\System.Data.SQLite.xml
+C:\Users\Nic\Desktop\Github Repos\GMCampaignManager\NPC Register\NPC Register\obj\Debug\NPC Register.csproj.AssemblyReference.cache
+C:\Users\Nic\Desktop\Github Repos\GMCampaignManager\NPC Register\NPC Register\obj\Debug\NPC_Register.Form1.resources
+C:\Users\Nic\Desktop\Github Repos\GMCampaignManager\NPC Register\NPC Register\obj\Debug\NPC_Register.Properties.Resources.resources
+C:\Users\Nic\Desktop\Github Repos\GMCampaignManager\NPC Register\NPC Register\obj\Debug\NPC Register.csproj.GenerateResource.cache
+C:\Users\Nic\Desktop\Github Repos\GMCampaignManager\NPC Register\NPC Register\obj\Debug\NPC Register.csproj.CoreCompileInputs.cache
+C:\Users\Nic\Desktop\Github Repos\GMCampaignManager\NPC Register\NPC Register\obj\Debug\NPC Register.csproj.CopyComplete
+C:\Users\Nic\Desktop\Github Repos\GMCampaignManager\NPC Register\NPC Register\obj\Debug\NPC Register.exe
+C:\Users\Nic\Desktop\Github Repos\GMCampaignManager\NPC Register\NPC Register\obj\Debug\NPC Register.pdb
