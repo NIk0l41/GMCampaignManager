@@ -18,9 +18,9 @@ namespace NPC_Register
         const string filePath = path + @"\data.db";
         const string conPath = @"URI=file:" + filePath;
 
-        //Workers
+        ///Workers
         public DatabasePriest priestSylas;
-
+        public Indexer indexerMiles;
         ///Data Objects
         // Global Dataset
         public DataSet publicData;
@@ -34,6 +34,7 @@ namespace NPC_Register
         public Form1()
         {
             InitializeComponent();
+
         }
 
         private void pnlWorkSpace_Paint(object sender, PaintEventArgs e)

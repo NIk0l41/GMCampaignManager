@@ -18,7 +18,8 @@ namespace NPC_Register
 
         public DataSet data;
 
-        public DatabasePriest(string connectionPath) {
+        public DatabasePriest(string connectionPath, DataSet globalDataSet) {
+            data = globalDataSet;
             connection = new SQLiteConnection(connectionPath);
             cmd = connection.CreateCommand();
         }
@@ -57,6 +58,7 @@ namespace NPC_Register
 
         public DataTable ReturnTable(string tableName)
         {
+            //Ensure that the function that calls this one opens and closes the connection!
             if (string.IsNullOrEmpty(tableName.Trim()))
                 return null;
             var query = "SELECT * FROM " + tableName;
