@@ -19,8 +19,8 @@ namespace NPC_Register
         const string conPath = @"URI=file:" + filePath;
 
         ///Workers
-        public DatabasePriest priestSylas;
-        public Indexer indexerMiles;
+        DatabasePriest priestSylas;
+        Indexer indexerMiles;
         ///Data Objects
         // Global Dataset
         public DataSet publicData;
@@ -34,6 +34,16 @@ namespace NPC_Register
         public Form1()
         {
             InitializeComponent();
+
+            ///Variable Delcaration
+            publicData = new DataSet();
+
+            priestSylas = new DatabasePriest(filePath, publicData);
+            priestSylas.ReadDatabase();
+
+            indexerMiles = new Indexer(publicData);
+            tableIndex = indexerMiles.tableIndex;
+            rowIndexes = indexerMiles.entryIndexes;
 
         }
 

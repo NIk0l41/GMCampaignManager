@@ -4,17 +4,33 @@ using System.Data;
 
 namespace NPC_Register
 {
-    class Indexer
+    public class Indexer
     {
-        // tableIndex[i] == rowIndexes[i]
+        // tableIndex[i] == entryIndexes[i] == attrIndexes[i]
+        // Each Dictionary is for one collection:
+        /// <summary>
+        /// Table Name --> Table Position w/in DataSet
+        /// </summary>
         public Dictionary<string, int> tableIndex;
-        public Dictionary<string, int>[] rowIndexes;
+        /// <summary>
+        /// Entry PK --> Entry Position w/in Table
+        /// </summary>
+        public Dictionary<string, int>[] entryIndexes;
+        /// <summary>
+        /// Attribute Name --> Attribute Position w/in Table
+        /// </summary>
+        public Dictionary<string, int>[] attrIndexes;
         DataSet dataSet;
 
         public Indexer(DataSet dataSet) {
             this.dataSet = dataSet;
+            RefreshIndexes();
+
+        }
+
+        public void RefreshIndexes() {
             tableIndex = GetTableIndex();
-            rowIndexes = GetRowIndexes();
+            entryIndexes = GetRowIndexes();
         }
 
         /// <summary>
@@ -61,6 +77,20 @@ namespace NPC_Register
                 }
             }
             return rwIndex;
+        }
+
+        Dictionary<string, int>[] GetAttributeIndexes() {
+            var atIndexes = new Dictionary<string, int>[dataSet.Tables.Count];
+            for (int i = 0; i < atIndexes.Length; i++) {
+                atIndexes[i] = GetAttributeIndex(i);
+            }
+            return atIndexes;
+        }
+
+        Dictionary<string, int> GetAttributeIndex(int tblNo) {
+            var atIndex = new Dictionary<string, int>();
+
+            return atIndex;
         }
     }
 }

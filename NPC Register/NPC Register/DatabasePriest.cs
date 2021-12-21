@@ -12,15 +12,16 @@ namespace NPC_Register
         SQLiteCommand cmd;
 
         Dictionary<string, int> tableIndex;
-        Dictionary<string, int>[] rowIndexes; 
+        Dictionary<string, int>[] rowIndexes;
 
-
+        string filePath;
 
         public DataSet data;
 
-        public DatabasePriest(string connectionPath, DataSet globalDataSet) {
+        public DatabasePriest(string databasePath, DataSet globalDataSet) {
             data = globalDataSet;
-            connection = new SQLiteConnection(connectionPath);
+            filePath = databasePath;
+            connection = new SQLiteConnection(@"URI=file:" + filePath);
             cmd = connection.CreateCommand();
         }
 
@@ -32,7 +33,7 @@ namespace NPC_Register
         #region On Project Load
         public void ReadDatabase()
         {
-            if (!File.Exists(connection.FileName))
+            if (!File.Exists(filePath))
             {
                 // Do something idk
             }
@@ -56,7 +57,7 @@ namespace NPC_Register
             }
         }
 
-        public DataTable ReturnTable(string tableName)
+        DataTable ReturnTable(string tableName)
         {
             //Ensure that the function that calls this one opens and closes the connection!
             if (string.IsNullOrEmpty(tableName.Trim()))
