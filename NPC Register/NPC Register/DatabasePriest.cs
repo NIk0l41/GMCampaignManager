@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
 using System.IO;
@@ -8,24 +7,26 @@ namespace NPC_Register
 {
     public class DatabasePriest
     {
-        SQLiteConnection connection;
-        SQLiteCommand cmd;
+        readonly SQLiteConnection connection;
+        readonly SQLiteCommand cmd;
 
         Dictionary<string, int> tableIndex;
         Dictionary<string, int>[] rowIndexes;
 
-        string filePath;
+        readonly string filePath;
 
         public DataSet data;
 
-        public DatabasePriest(string databasePath, DataSet globalDataSet) {
+        public DatabasePriest(string databasePath, DataSet globalDataSet)
+        {
             data = globalDataSet;
             filePath = databasePath;
             connection = new SQLiteConnection(@"URI=file:" + filePath);
             cmd = connection.CreateCommand();
         }
 
-        public void SetIndexes(Dictionary<string, int> tableIndex, Dictionary<string, int>[] rowIndexes) {
+        public void SetIndexes(Dictionary<string, int> tableIndex, Dictionary<string, int>[] rowIndexes)
+        {
             this.tableIndex = tableIndex;
             this.rowIndexes = rowIndexes;
         }

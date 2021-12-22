@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SQLite;
 using System.IO;
+using System.Windows.Forms;
 
 namespace NPC_Register
 {
@@ -18,16 +13,22 @@ namespace NPC_Register
         const string filePath = path + @"\data.db";
         const string conPath = @"URI=file:" + filePath;
 
-        ///Workers
-        DatabasePriest priestSylas;
-        Indexer indexerMiles;
+        ///Agents
+        public DatabasePriest priestSylas;
+        public Indexer indexerMiles;
+        public DatasetEngineer engineerLicia;
+
         ///Data Objects
         // Global Dataset
         public DataSet publicData;
+
         // Global TableIndex
         public Dictionary<string, int> tableIndex;
         // Global RowIndexes
         public Dictionary<string, int>[] rowIndexes;
+
+        // Update Logs
+        public List<UpdateLog> updateLogs;
 
 
 
@@ -44,6 +45,8 @@ namespace NPC_Register
             indexerMiles = new Indexer(publicData);
             tableIndex = indexerMiles.tableIndex;
             rowIndexes = indexerMiles.entryIndexes;
+
+            engineerLicia = new DatasetEngineer(this);
 
         }
 
@@ -108,7 +111,6 @@ namespace NPC_Register
             con.Open();
 
             ///SQLiteCommands
-            SQLiteCommand cmd = new SQLiteCommand(con);
             //Select Data from NPCs
             string query = "SELECT * FROM NPCs";
             SQLiteDataAdapter adapter = new SQLiteDataAdapter(query, con);
@@ -134,38 +136,20 @@ namespace NPC_Register
 
         #region GMCM SQLite Library
 
-        void PopulateDatabase(SQLiteCommand cmd) {
-            /// Create Blank Item Templates
-            SqliteNoQuery("INSERT INTO ItemTemplates(itemName) VALUES('Iron Sword')", cmd);
-
-            //Explicitly for a test DB
-            DPopulateDB(cmd);
-        }
-
-        void DPopulateDB(SQLiteCommand cmd) {
-            
-        }
-
-        void CreateNpc(SQLiteConnection connection){
-            // Declare Command
-            SQLiteCommand cmd = connection.CreateCommand();
-            /// Create Inventory
-            // Create Instance from Template
-
-        }
-
         /// <summary>
         /// Used to Change the Database.
         /// </summary>
         /// <param name="command">The SQLite command.</param>
         /// <param name="cmd">The database connection to utilise.</param>
-        private void SqliteNoQuery(string command, SQLiteCommand cmd) {
+        private void SqliteNoQuery(string command, SQLiteCommand cmd)
+        {
             cmd.CommandText = command;
             cmd.ExecuteNonQuery();
         }
 
-        private DataTable SqliteQuery(string query, SQLiteConnection connection) {
-            if(string.IsNullOrEmpty(query.Trim()))
+        private DataTable SqliteQuery(string query, SQLiteConnection connection)
+        {
+            if (string.IsNullOrEmpty(query.Trim()))
                 return null;
 
             SQLiteDataAdapter da = new SQLiteDataAdapter(query, connection);

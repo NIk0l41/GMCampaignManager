@@ -1,25 +1,33 @@
-﻿using System;
-using System.Data;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace NPC_Register
 {
     public class UpdateLog
     {
         public string primaryKey;
-        public string tableName; //Index??
-        public int updateType;
+        public string tableName;
+        public UpdateLogType updateType;
+        /// <summary>
+        /// A package the Domain Manager must manufacture.
+        /// Each entry contains the row index from the specified table,
+        /// and the int/string value of the row change.
+        /// </summary>
+        public Dictionary<int, object> valueIndex;
+
+        public UpdateLog(string primaryKey, string tableName, UpdateLogType updateType, Dictionary<int, object> valueIndex = null)
+        {
+            this.primaryKey = primaryKey;
+            this.tableName = tableName;
+            this.updateType = updateType;
+            this.valueIndex = valueIndex;
+
+        }
     }
 
-    public class RowContents
+    public enum UpdateLogType
     {
-        public string colName;
-        public Type colType;
-        public string colContentsStr;
-        public int colContentInt;
-
-        void SetContents() {
-            
-        }
+        CREATE,
+        UPDATE,
+        DELETE
     }
 }

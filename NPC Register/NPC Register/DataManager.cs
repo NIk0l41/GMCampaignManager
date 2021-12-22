@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
 using System.IO;
@@ -8,8 +7,8 @@ namespace NPC_Register
 {
     class DataManager
     {
-        SQLiteConnection connection;
-        SQLiteCommand cmd;
+        readonly SQLiteConnection connection;
+        readonly SQLiteCommand cmd;
 
         public DataSet data;
 
@@ -20,7 +19,7 @@ namespace NPC_Register
 
         public bool debugging;
 
-        public DataManager (string connectionPath, bool debugging)
+        public DataManager(string connectionPath, bool debugging)
         {
             //Intialise Variables
             this.debugging = debugging;
@@ -35,8 +34,10 @@ namespace NPC_Register
             OnProjectLoad();
         }
 
-        public void CreateDatabase() {
-            if (!File.Exists(connection.FileName)) {
+        public void CreateDatabase()
+        {
+            if (!File.Exists(connection.FileName))
+            {
                 connection.Open();
                 string createTables = File.ReadAllText(@"C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\SQLite Commands\Table Creation.sql");
                 var cmd = connection.CreateCommand();
@@ -165,58 +166,73 @@ namespace NPC_Register
 
         #region Write To Tables Functions
 
-        void WriteToItemTemplates(DataTable table) {
-            foreach (DataRow row in table.Rows) {
+        void WriteToItemTemplates(DataTable table)
+        {
+            foreach (DataRow row in table.Rows)
+            {
                 var query = "INSERT INTO ItemTemplates(itemName) VALUES('" + row.ItemArray[1] + "');";
                 SqliteNoQuery(query);
             }
         }
 
-        void WriteToCatalogueData(DataTable table) {
-            foreach (DataRow row in table.Rows) {
+        void WriteToCatalogueData(DataTable table)
+        {
+            foreach (DataRow row in table.Rows)
+            {
                 var query = "INSERT INTO CatalogueData (catalogueLabel) VALUES('" + row.ItemArray[1] + "');";
                 SqliteNoQuery(query);
             }
         }
 
-        void WriteToItemInstances(DataTable table) {
-            foreach (DataRow row in table.Rows) {
+        void WriteToItemInstances(DataTable table)
+        {
+            foreach (DataRow row in table.Rows)
+            {
                 var query = "INSERT INTO ItemInstances(instanceName, inventoryID) VALUES('" + row.ItemArray[1] + "', " + row.ItemArray[2] + ");";
                 SqliteNoQuery(query);
             }
         }
 
-        void WriteToCatalogueEntries(DataTable table) {
-            foreach (DataRow row in table.Rows) {
+        void WriteToCatalogueEntries(DataTable table)
+        {
+            foreach (DataRow row in table.Rows)
+            {
                 var query = "INSERT INTO CatalogueEntries(catalogueID, itemID, price) VALUES(" + row.ItemArray[0] + ", " + row.ItemArray[1] + ", '" + row.ItemArray[2] + "');";
                 SqliteNoQuery(query);
             }
         }
 
-        void WriteToLocations(DataTable table) {
-            foreach (DataRow row in table.Rows) {
+        void WriteToLocations(DataTable table)
+        {
+            foreach (DataRow row in table.Rows)
+            {
                 var query = "INSERT INTO Locations(locationName, parentLocationID, inventoryItemID) VALUES ('" + row.ItemArray[1] + "', " + row.ItemArray[2] + ", " + row.ItemArray[3] + ");";
                 SqliteNoQuery(query);
             }
         }
 
-        void WriteToNPCs(DataTable table) {
-            foreach (DataRow row in table.Rows) {
+        void WriteToNPCs(DataTable table)
+        {
+            foreach (DataRow row in table.Rows)
+            {
                 var query = "INSERT INTO NPCs(npcName, currentLocation, inventoryItemID) VALUES('" + row.ItemArray[1] + "', " + row.ItemArray[2] + ", " + row.ItemArray[3] + ");";
                 SqliteNoQuery(query);
             }
         }
 
-        void WriteToHasAccessToCatalogue(DataTable table) {
-            foreach (DataRow row in table.Rows) {
-                var query = "INSERT INTO HasAccessToCatalogue(npcID, catalogueID) VALUES(" + row.ItemArray[0] + ", " + row.ItemArray[1] +  ");";
+        void WriteToHasAccessToCatalogue(DataTable table)
+        {
+            foreach (DataRow row in table.Rows)
+            {
+                var query = "INSERT INTO HasAccessToCatalogue(npcID, catalogueID) VALUES(" + row.ItemArray[0] + ", " + row.ItemArray[1] + ");";
                 SqliteNoQuery(query);
             }
         }
 
         #endregion
 
-        void WriteToTables() {
+        void WriteToTables()
+        {
 
             connection.Open();
 
@@ -234,7 +250,8 @@ namespace NPC_Register
             connection.Close();
         }
 
-        private void SqliteNoQuery(string command) {
+        private void SqliteNoQuery(string command)
+        {
             cmd.CommandText = command;
             cmd.ExecuteNonQuery();
         }
