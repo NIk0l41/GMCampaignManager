@@ -37,23 +37,20 @@
             this.pnlWorkTools = new System.Windows.Forms.Panel();
             this.btnNoteAdd = new System.Windows.Forms.Button();
             this.pnlWorkSpace = new System.Windows.Forms.Panel();
-            this.grid = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tsTop = new System.Windows.Forms.ToolStrip();
             this.tsOpenDB = new System.Windows.Forms.ToolStripButton();
             this.tsCreateDB = new System.Windows.Forms.ToolStripButton();
+            this.tsDb1 = new System.Windows.Forms.ToolStripButton();
             this.dlgCreate = new System.Windows.Forms.FolderBrowserDialog();
-            this.grid2 = new System.Windows.Forms.DataGridView();
             this.pnlTop.SuspendLayout();
             this.pnlNPC.SuspendLayout();
             this.pnlWorkTools.SuspendLayout();
             this.pnlWorkSpace.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             this.panel1.SuspendLayout();
             this.tsTop.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grid2)).BeginInit();
             this.SuspendLayout();
             // 
             // itemList
@@ -101,6 +98,7 @@
             this.btnNpcCreate.TabIndex = 0;
             this.btnNpcCreate.Text = "Create NPC";
             this.btnNpcCreate.UseVisualStyleBackColor = true;
+            this.btnNpcCreate.Click += new System.EventHandler(this.btnNpcCreate_Click);
             // 
             // pnlWorkTools
             // 
@@ -123,8 +121,6 @@
             // pnlWorkSpace
             // 
             this.pnlWorkSpace.BackColor = System.Drawing.Color.DarkTurquoise;
-            this.pnlWorkSpace.Controls.Add(this.grid2);
-            this.pnlWorkSpace.Controls.Add(this.grid);
             this.pnlWorkSpace.Controls.Add(this.panel1);
             this.pnlWorkSpace.Location = new System.Drawing.Point(189, 89);
             this.pnlWorkSpace.Name = "pnlWorkSpace";
@@ -132,20 +128,12 @@
             this.pnlWorkSpace.TabIndex = 2;
             this.pnlWorkSpace.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlWorkSpace_Paint);
             // 
-            // grid
-            // 
-            this.grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grid.Location = new System.Drawing.Point(275, 34);
-            this.grid.Name = "grid";
-            this.grid.Size = new System.Drawing.Size(240, 150);
-            this.grid.TabIndex = 1;
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Orchid;
             this.panel1.Controls.Add(this.richTextBox1);
             this.panel1.Controls.Add(this.panel2);
-            this.panel1.Location = new System.Drawing.Point(69, 34);
+            this.panel1.Location = new System.Drawing.Point(272, 40);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 200);
             this.panel1.TabIndex = 0;
@@ -170,7 +158,8 @@
             // 
             this.tsTop.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsOpenDB,
-            this.tsCreateDB});
+            this.tsCreateDB,
+            this.tsDb1});
             this.tsTop.Location = new System.Drawing.Point(0, 0);
             this.tsTop.Name = "tsTop";
             this.tsTop.Size = new System.Drawing.Size(800, 25);
@@ -197,13 +186,15 @@
             this.tsCreateDB.Text = "Create DB";
             this.tsCreateDB.Click += new System.EventHandler(this.tsCreateDB_Click);
             // 
-            // grid2
+            // tsDb1
             // 
-            this.grid2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grid2.Location = new System.Drawing.Point(275, 199);
-            this.grid2.Name = "grid2";
-            this.grid2.Size = new System.Drawing.Size(240, 150);
-            this.grid2.TabIndex = 2;
+            this.tsDb1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsDb1.Image = ((System.Drawing.Image)(resources.GetObject("tsDb1.Image")));
+            this.tsDb1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsDb1.Name = "tsDb1";
+            this.tsDb1.Size = new System.Drawing.Size(79, 22);
+            this.tsDb1.Text = "Execute DB 1";
+            this.tsDb1.Click += new System.EventHandler(this.tsDb1_Click);
             // 
             // Form1
             // 
@@ -220,11 +211,9 @@
             this.pnlNPC.ResumeLayout(false);
             this.pnlWorkTools.ResumeLayout(false);
             this.pnlWorkSpace.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             this.panel1.ResumeLayout(false);
             this.tsTop.ResumeLayout(false);
             this.tsTop.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grid2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -247,8 +236,7 @@
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.ToolStripButton tsCreateDB;
         private System.Windows.Forms.FolderBrowserDialog dlgCreate;
-        private System.Windows.Forms.DataGridView grid;
-        private System.Windows.Forms.DataGridView grid2;
+        private System.Windows.Forms.ToolStripButton tsDb1;
     }
 }
 

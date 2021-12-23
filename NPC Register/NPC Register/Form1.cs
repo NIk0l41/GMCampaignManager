@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SQLite;
 using System.IO;
 using System.Windows.Forms;
 
@@ -9,9 +8,9 @@ namespace NPC_Register
 {
     public partial class Form1 : Form
     {
-        const string path = @"C:\Users\Nicholas Maver\Documents\CSSQLtmp";
-        const string filePath = path + @"\data.db";
-        const string conPath = @"URI=file:" + filePath;
+        public const string path = @"C:\Users\Nicholas Maver\Documents\CSSQLtmp";
+        public const string filePath = path + @"\data.db";
+        public const string conPath = @"URI=file:" + filePath;
 
         ///Agents
         public DatabasePriest priestSylas;
@@ -31,7 +30,6 @@ namespace NPC_Register
         public List<UpdateLog> updateLogs;
 
 
-
         public Form1()
         {
             InitializeComponent();
@@ -39,124 +37,108 @@ namespace NPC_Register
             ///Variable Delcaration
             publicData = new DataSet();
 
-            priestSylas = new DatabasePriest(filePath, publicData);
-            priestSylas.ReadDatabase();
+            priestSylas = new DatabasePriest(filePath);
 
-            indexerMiles = new Indexer(publicData);
-            tableIndex = indexerMiles.tableIndex;
-            rowIndexes = indexerMiles.entryIndexes;
-
-            engineerLicia = new DatasetEngineer(this);
+            indexerMiles = new Indexer();
+            engineerLicia = new DatasetEngineer();
 
         }
+
+        #region Setup Project
+        public void SetupProject() {
+            publicData = priestSylas.ReadDatabase();
+            tableIndex = indexerMiles.GetTableIndex(publicData);
+            rowIndexes = indexerMiles.GetRowIndexes(publicData);
+        }
+
+        #endregion
+
+        #region Refresh UI Components After Data Change
+        void RefreshUiComponents() {
+            RefreshItemList();
+        }
+
+        void RefreshItemList() {
+            string[] npcNames = new string[publicData.Tables[tableIndex["NPCs"]].Rows.Count];
+            foreach (string name in npcNames) {
+                itemList.Items.Add(name);
+            }
+        }
+        #endregion
 
         private void pnlWorkSpace_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
+        #region Update Log Commands
+
+        UpdateLog CreateInventoryInstance(string ownerName) {
+            var valueIndex = new Dictionary<int, object>();
+            valueIndex.Add(1, "_inventory-" + ownerName);
+            var instance = new UpdateLog("", "ItemInstances", UpdateLogType.CREATE);
+            return instance;
+        }
+
+        UpdateLog CreateNpcInstance(string npcName) {
+            var valueIndex = new Dictionary<int, object>();
+            valueIndex.Add(1, npcName);
+            valueIndex.Add(3, rowIndexes[tableIndex["NPCs"]]["_inventory-"]);
+            var instance = new UpdateLog("", "NPCs", UpdateLogType.CREATE, valueIndex);
+            return instance;
+        }
+
+        object GetPrimaryKey() {
+            return null;
+        }
+
+        #endregion
+
+        #region UI Commands
+
+        #region Tool Strip Items
         private void tsCreateDB_Click(object sender, EventArgs e)
         {
-
-            if (!Directory.Exists(path))
+            if (File.Exists(filePath))
             {
-                Directory.CreateDirectory(path);
+                string deleteMessage = "Database Exists.";
+                string deleteCaption = "Database found, would you like to delete it and create a new one?";
+                DialogResult deleteDb =  MessageBox.Show(deleteMessage, deleteCaption, MessageBoxButtons.YesNo);
+                if (deleteDb == DialogResult.Yes) {
+                    File.Delete(filePath);
+                    priestSylas.CreateDatabase();
+                    SetupProject();
+                }
             }
-            bool debugging = true;
-
-            ///Database Creation
-            if (debugging && File.Exists(filePath))
-            {
-                File.Delete(filePath);
-            }
-
-            ///SQLite Connection
-            //https://zetcode.com/csharp/sqlite/
-            //Creates the Database if there is none, then establishes a connection with it.
-            SQLiteConnection con = new SQLiteConnection(conPath);
-            con.Open();
-
-            ///Database Structure.
-            string createTables = File.ReadAllText(@"C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\SQLite Commands\Table Creation.sql");
-            string createTblNpc = @"CREATE TABLE NPC(
-                                    npcID INTEGER PRIMARY KEY AUTOINCREMENT,
-                                    npcName varchar(255) NOT NULL
-                                    );";
-            //See https://sqlite.org/autoinc.html for more information on AutoIncrement
-            //This article doesn't recommend its use, but for now it'll do
-
-            ///SQLite Commands
-            SQLiteCommand cmd = con.CreateCommand();
-
-            cmd.CommandText = createTables;
-            cmd.ExecuteNonQuery();
-
-            //cmd.CommandText = "INSERT INTO NPCs(npcName) VALUES('Johnny');";
-            //cmd.ExecuteNonQuery();
-
-            //cmd.CommandText = "INSERT INTO NPCs(npcName) VALUES('Savaal');";
-            //cmd.ExecuteNonQuery();
-
-            //MessageBox.Show("Executed Non Queries");
-
-            ///SQLite Close Connection
-            con.Close();
-
         }
 
         private void tsOpenDB_Click(object sender, EventArgs e)
         {
-            ///SQLite Connection
-            SQLiteConnection con = new SQLiteConnection(conPath);
-            con.Open();
-
-            ///SQLiteCommands
-            //Select Data from NPCs
-            string query = "SELECT * FROM NPCs";
-            SQLiteDataAdapter adapter = new SQLiteDataAdapter(query, con);
-            DataSet set = new DataSet();
-            adapter.Fill(set, "NPCs");
-            //Select Data from ItemTemplates
-            query = "SELECT * FROM ItemTemplates";
-            adapter = new SQLiteDataAdapter(query, con);
-            adapter.Fill(set, "ItemTemplates");
-
-            //No need to keep the connection up longer than needed.
-            con.Close();
-            //Fill Grids
-            grid.DataSource = set;
-            grid.DataMember = "NPCs";
-
-            grid2.DataSource = set;
-            grid2.DataMember = "ItemTemplates";
-            MessageBox.Show(set.Tables[0].TableName);
-            //DataTable npc = set.Tables[0];
-
+            SetupProject();
         }
 
-        #region GMCM SQLite Library
-
-        /// <summary>
-        /// Used to Change the Database.
-        /// </summary>
-        /// <param name="command">The SQLite command.</param>
-        /// <param name="cmd">The database connection to utilise.</param>
-        private void SqliteNoQuery(string command, SQLiteCommand cmd)
+        #region Load Test Databases
+        private void tsDb1_Click(object sender, EventArgs e)
         {
-            cmd.CommandText = command;
-            cmd.ExecuteNonQuery();
+            priestSylas.LoadSqlScript(File.ReadAllText(@"C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\SQLite Commands\testDB1.sql"));
+            publicData = priestSylas.ReadDatabase();
+            SetupProject();
         }
+        #endregion
 
-        private DataTable SqliteQuery(string query, SQLiteConnection connection)
+        #endregion
+
+        private void btnNpcCreate_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(query.Trim()))
-                return null;
-
-            SQLiteDataAdapter da = new SQLiteDataAdapter(query, connection);
-            var dt = new DataTable();
-            da.Fill(dt);
-            da.Dispose();
-            return dt;
+            // Ooo spicy
+            // Prototype Data Manager
+            /// 1) Create Inventory Item
+            // Since all ID based PKs run on autoincrement, the update log's
+            // Primary Key attribute can be null.
+            var logs = new UpdateLog[2];
+            logs[0] = CreateInventoryInstance("Mr Shoebox");
+            /// 2) Create NPC Entry
+            /// ...
         }
 
         #endregion

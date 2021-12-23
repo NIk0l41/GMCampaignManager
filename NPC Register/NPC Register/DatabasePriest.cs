@@ -10,52 +10,36 @@ namespace NPC_Register
         readonly SQLiteConnection connection;
         readonly SQLiteCommand cmd;
 
-        Dictionary<string, int> tableIndex;
-        Dictionary<string, int>[] rowIndexes;
-
-        readonly string filePath;
+        int updatesCompleted;
 
         public DataSet data;
 
-        public DatabasePriest(string databasePath, DataSet globalDataSet)
+        public DatabasePriest(string databasePath)
         {
-            data = globalDataSet;
-            filePath = databasePath;
-            connection = new SQLiteConnection(@"URI=file:" + filePath);
+            updatesCompleted = 0;
+            connection = new SQLiteConnection(@"URI=file:" + databasePath);
             cmd = connection.CreateCommand();
         }
 
-        public void SetIndexes(Dictionary<string, int> tableIndex, Dictionary<string, int>[] rowIndexes)
-        {
-            this.tableIndex = tableIndex;
-            this.rowIndexes = rowIndexes;
-        }
-
         #region On Project Load
-        public void ReadDatabase()
+        public DataSet ReadDatabase()
         {
-            if (!File.Exists(filePath))
-            {
-                // Do something idk
-            }
-            else
-            {
-                connection.Open();
+            var dataSet = new DataSet();
+            connection.Open();
+            #region Load Tables
 
-                #region Load Tables
+            dataSet.Tables.Add(ReturnTable("ItemTemplates"));
+            dataSet.Tables.Add(ReturnTable("CatalogueData"));
+            dataSet.Tables.Add(ReturnTable("ItemInstances"));
+            dataSet.Tables.Add(ReturnTable("CatalogueEntries"));
+            dataSet.Tables.Add(ReturnTable("NPCs"));
+            dataSet.Tables.Add(ReturnTable("Locations"));
+            dataSet.Tables.Add(ReturnTable("HasAccessToCatalogue"));
 
-                data.Tables.Add(ReturnTable("ItemTemplates"));
-                data.Tables.Add(ReturnTable("CatalogueData"));
-                data.Tables.Add(ReturnTable("ItemInstances"));
-                data.Tables.Add(ReturnTable("CatalogueEntries"));
-                data.Tables.Add(ReturnTable("NPCs"));
-                data.Tables.Add(ReturnTable("Locations"));
-                data.Tables.Add(ReturnTable("HasAccessToCatalogue"));
+            #endregion
 
-                #endregion
-
-                connection.Close();
-            }
+            connection.Close();
+            return dataSet;
         }
 
         DataTable ReturnTable(string tableName)
@@ -71,139 +55,116 @@ namespace NPC_Register
                 var adapter = new SQLiteDataAdapter(query, connection);
                 adapter.Fill(output);
                 adapter.Dispose();
+                // If a table has a single autoincrement primarky key, we enable
+                // that functionality
+                if (tableName == "CatalogueEntries")
+                {
+
+                }
+                else {
+                    output.Columns[0].AutoIncrement = true;
+                }
+                return output;
             }
             catch
             {
                 return null;
             }
-            return output;
         }
         #endregion
 
         #region Project Save
-        public void OnProjectSave(bool specificSave)
+        public void SaveProject(Dictionary<string, int> tableIndex, List<UpdateLog> logs)
         {
-            if (specificSave)
-            {
-
-            }
-            else
-            {
-                //Surely there's a way to update the database without rewriting it
-                //      :/
-                File.Delete(connection.FileName);
-                CreateDatabase();
-
-                WriteToTables();
-            }
-        }
-
-        #region Write To Tables Functions
-
-        void WriteToItemTemplates(DataTable table)
-        {
-            foreach (DataRow row in table.Rows)
-            {
-                var query = "INSERT INTO ItemTemplates(itemName) VALUES('" + row.ItemArray[1] + "');";
-                SqliteNoQuery(query);
-            }
-        }
-
-        void WriteToCatalogueData(DataTable table)
-        {
-            foreach (DataRow row in table.Rows)
-            {
-                var query = "INSERT INTO CatalogueData (catalogueLabel) VALUES('" + row.ItemArray[1] + "');";
-                SqliteNoQuery(query);
-            }
-        }
-
-        void WriteToItemInstances(DataTable table)
-        {
-            foreach (DataRow row in table.Rows)
-            {
-                var query = "INSERT INTO ItemInstances(instanceName, inventoryID) VALUES('" + row.ItemArray[1] + "', " + row.ItemArray[2] + ");";
-                SqliteNoQuery(query);
-            }
-        }
-
-        void WriteToCatalogueEntries(DataTable table)
-        {
-            foreach (DataRow row in table.Rows)
-            {
-                var query = "INSERT INTO CatalogueEntries(catalogueID, itemID, price) VALUES(" + row.ItemArray[0] + ", " + row.ItemArray[1] + ", '" + row.ItemArray[2] + "');";
-                SqliteNoQuery(query);
-            }
-        }
-
-        void WriteToLocations(DataTable table)
-        {
-            foreach (DataRow row in table.Rows)
-            {
-                var query = "INSERT INTO Locations(locationName, parentLocationID, inventoryItemID) VALUES ('" + row.ItemArray[1] + "', " + row.ItemArray[2] + ", " + row.ItemArray[3] + ");";
-                SqliteNoQuery(query);
-            }
-        }
-
-        void WriteToNPCs(DataTable table)
-        {
-            foreach (DataRow row in table.Rows)
-            {
-                var query = "INSERT INTO NPCs(npcName, currentLocation, inventoryItemID) VALUES('" + row.ItemArray[1] + "', " + row.ItemArray[2] + ", " + row.ItemArray[3] + ");";
-                SqliteNoQuery(query);
-            }
-        }
-
-        void WriteToHasAccessToCatalogue(DataTable table)
-        {
-            foreach (DataRow row in table.Rows)
-            {
-                var query = "INSERT INTO HasAccessToCatalogue(npcID, catalogueID) VALUES(" + row.ItemArray[0] + ", " + row.ItemArray[1] + ");";
-                SqliteNoQuery(query);
-            }
-        }
-
-        #endregion
-
-        void WriteToTables()
-        {
-
             connection.Open();
+            if (logs.Count == updatesCompleted) {
+                connection.Close();
+                return;
+            }
+            for (int i = updatesCompleted; i < logs.Count; i++) {
+                string command;
+                var log = logs[i];
 
-            // Write Order is >IMPORTANT< because of Table Dependencies
-            // Always check Foreign Keys before making changes here
+                switch (logs[i].updateType) {
+                    case UpdateLogType.DELETE:
+                        command = "DELETE FROM `" + log.tableName +"` WHERE " + GetPkConditions(tableIndex, log);
+                        break;
+                    case UpdateLogType.UPDATE:
+                        command = "UPDATE `" + log.tableName + "` SET ";
+                        foreach (KeyValuePair<int, object> pair in log.valueIndex) {
+                            command += GetAttributeValue(log.tableName, pair, tableIndex);
+                        }
+                        command = command.Remove(command.Length - 2, 1);
+                        command += "WHERE " + GetPkConditions(tableIndex, log);
+                        break;
+                    case UpdateLogType.CREATE:
+                        command = "INSERT INTO " + log.tableName + " (";
+                        foreach (KeyValuePair<int, object> pair in log.valueIndex) {
+                            command += GetAttributeValue(log.tableName, pair, tableIndex);
+                        }
+                        command = command.Remove(command.Length - 2, 1);
+                        command += ");";
+                        break;
+                }
 
-            WriteToItemTemplates(data.Tables[tableIndex["ItemTemplates"]]);
-            WriteToCatalogueData(data.Tables[tableIndex["CatalogueData"]]);
-            WriteToItemInstances(data.Tables[tableIndex["ItemInstances"]]);
-            WriteToCatalogueEntries(data.Tables[tableIndex["CatalogueEntries"]]);
-            WriteToLocations(data.Tables[tableIndex["Locations"]]);
-            WriteToNPCs(data.Tables[tableIndex["NPCs"]]);
-            WriteToHasAccessToCatalogue(data.Tables[tableIndex["HasAccessToCatalogue"]]);
+                updatesCompleted++;
+            }
 
             connection.Close();
         }
 
-        private void SqliteNoQuery(string command)
-        {
+        string GetColumnName(string tblName, int colNumber, Dictionary<string, int> tableIndex) {
+            string output;
+            return output = data.Tables[tableIndex[tblName]].Columns[colNumber].ColumnName;
+        }
+
+        string GetAttributeValue(string tblName, KeyValuePair<int, object> pair, Dictionary<string, int> tableIndex) {
+            string output = "";
+            output += GetColumnName(tblName, pair.Key, tableIndex) + " = " + pair.Value + ", ";
+            return output;
+        }
+
+        string GetPkConditions(Dictionary<string, int> tableIndex, UpdateLog log) {
+            string output;
+            if (log.tableName == "CatalogueEntries") {
+                string[] pks = log.primaryKey.Split(new char[] { ',', ' ' });
+                output = data.Tables[tableIndex[log.tableName]].Columns[0].ColumnName + " = " + pks[0] +"AND";
+                output += data.Tables[tableIndex[log.tableName]].Columns[1].ColumnName + " = " + pks[1] + ";";
+            }
+            else {
+                output = data.Tables[tableIndex[log.tableName]].Columns[0].ColumnName + " = " + log.primaryKey;
+            }
+            return output;
+        }
+
+        #endregion
+
+        private void SqliteNoQuery(string command) {
             cmd.CommandText = command;
             cmd.ExecuteNonQuery();
         }
 
-        public void CreateDatabase()
-        {
+        public void LoadSqlScript(string sqlScript) {
+            connection.Open();
+            SqliteNoQuery(sqlScript);
+            connection.Close();
+        }
+
+        public void CreateDatabase() {
             if (!File.Exists(connection.FileName))
             {
                 connection.Open();
                 string createTables = File.ReadAllText(@"C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\SQLite Commands\Table Creation.sql");
-                var cmd = connection.CreateCommand();
-                cmd.CommandText = createTables;
-                cmd.ExecuteNonQuery();
+                SqliteNoQuery(createTables);
                 connection.Close();
             }
         }
 
-        #endregion
+        public void DeleteDatabase(string filePath) {
+            if (File.Exists(filePath)) {
+                File.Delete(filePath);
+            }
+        }
 
     }
 }
