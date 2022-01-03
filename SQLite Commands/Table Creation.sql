@@ -1,6 +1,5 @@
 CREATE TABLE NPCs(
-	npcID INTEGER PRIMARY KEY AUTOINCREMENT,
-	npcName VARCHAR(255) NOT NULL,
+	npcName VARCHAR(255) PRIMARY KEY,
 	currentLocation INTEGER,
 	inventoryItemID INTEGER NOT NULL,
 	FOREIGN KEY (currentLocation) REFERENCES Locations(locationID),
@@ -30,9 +29,9 @@ CREATE TABLE ItemInstances(
 );
 
 CREATE TABLE HasAccessToCatalogue(
-	npcID INTEGER NOT NULL,
+	npcName VARCHAR(255) NOT NULL,
 	catalogueID INTEGER NOT NULL,
-	FOREIGN KEY (npcID) REFERENCES NPCs(npcID),
+	FOREIGN KEY (npcName) REFERENCES NPCs(npcName),
 	FOREIGN KEY (catalogueID) REFERENCES CatalogueData(catalogueID)
 );
 

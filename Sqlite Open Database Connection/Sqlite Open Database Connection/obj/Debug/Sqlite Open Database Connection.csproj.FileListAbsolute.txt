@@ -1,0 +1,19 @@
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Sqlite Open Database Connection\Sqlite Open Database Connection\bin\Debug\Sqlite Open Database Connection.exe.config
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Sqlite Open Database Connection\Sqlite Open Database Connection\bin\Debug\Sqlite Open Database Connection.exe
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Sqlite Open Database Connection\Sqlite Open Database Connection\bin\Debug\Sqlite Open Database Connection.pdb
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Sqlite Open Database Connection\Sqlite Open Database Connection\bin\Debug\EntityFramework.dll
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Sqlite Open Database Connection\Sqlite Open Database Connection\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Sqlite Open Database Connection\Sqlite Open Database Connection\bin\Debug\System.Data.SQLite.dll
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Sqlite Open Database Connection\Sqlite Open Database Connection\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Sqlite Open Database Connection\Sqlite Open Database Connection\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Sqlite Open Database Connection\Sqlite Open Database Connection\bin\Debug\EntityFramework.xml
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Sqlite Open Database Connection\Sqlite Open Database Connection\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Sqlite Open Database Connection\Sqlite Open Database Connection\bin\Debug\System.Data.SQLite.xml
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Sqlite Open Database Connection\Sqlite Open Database Connection\obj\Debug\Sqlite Open Database Connection.csproj.AssemblyReference.cache
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Sqlite Open Database Connection\Sqlite Open Database Connection\obj\Debug\Sqlite_Open_Database_Connection.Form1.resources
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Sqlite Open Database Connection\Sqlite Open Database Connection\obj\Debug\Sqlite_Open_Database_Connection.Properties.Resources.resources
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Sqlite Open Database Connection\Sqlite Open Database Connection\obj\Debug\Sqlite Open Database Connection.csproj.GenerateResource.cache
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Sqlite Open Database Connection\Sqlite Open Database Connection\obj\Debug\Sqlite Open Database Connection.csproj.CoreCompileInputs.cache
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Sqlite Open Database Connection\Sqlite Open Database Connection\obj\Debug\Sqlite Open Database Connection.csproj.CopyComplete
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Sqlite Open Database Connection\Sqlite Open Database Connection\obj\Debug\Sqlite Open Database Connection.exe
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Sqlite Open Database Connection\Sqlite Open Database Connection\obj\Debug\Sqlite Open Database Connection.pdb

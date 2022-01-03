@@ -107,6 +107,10 @@ namespace NPC_Register
                         break;
                 }
 
+                ///LMAO
+                ///I know this is obsolete now, but I didn't even run an SQLiteNoQuery()
+                ///NO change would've been made had I run this script.
+                /// bruh.
                 updatesCompleted++;
             }
 

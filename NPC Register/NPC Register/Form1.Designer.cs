@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.itemList = new System.Windows.Forms.ListBox();
             this.pnlTop = new System.Windows.Forms.Panel();
             this.pnlNPC = new System.Windows.Forms.Panel();
             this.btnNpcRemove = new System.Windows.Forms.Button();
@@ -45,25 +44,26 @@
             this.tsCreateDB = new System.Windows.Forms.ToolStripButton();
             this.tsDb1 = new System.Windows.Forms.ToolStripButton();
             this.dlgCreate = new System.Windows.Forms.FolderBrowserDialog();
+            this.hierarchy2 = new System.Windows.Forms.ListBox();
+            this.pnlWork = new System.Windows.Forms.Panel();
+            this.hierarchy1 = new System.Windows.Forms.ListBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.btnLocationCreate = new System.Windows.Forms.Button();
+            this.btnLocationRemove = new System.Windows.Forms.Button();
             this.pnlTop.SuspendLayout();
             this.pnlNPC.SuspendLayout();
             this.pnlWorkTools.SuspendLayout();
             this.pnlWorkSpace.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tsTop.SuspendLayout();
+            this.pnlWork.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // itemList
-            // 
-            this.itemList.FormattingEnabled = true;
-            this.itemList.Location = new System.Drawing.Point(12, 90);
-            this.itemList.Name = "itemList";
-            this.itemList.Size = new System.Drawing.Size(171, 355);
-            this.itemList.TabIndex = 0;
             // 
             // pnlTop
             // 
             this.pnlTop.BackColor = System.Drawing.Color.Tomato;
+            this.pnlTop.Controls.Add(this.panel3);
             this.pnlTop.Controls.Add(this.pnlNPC);
             this.pnlTop.Controls.Add(this.pnlWorkTools);
             this.pnlTop.Location = new System.Drawing.Point(12, 37);
@@ -76,7 +76,7 @@
             this.pnlNPC.BackColor = System.Drawing.Color.OliveDrab;
             this.pnlNPC.Controls.Add(this.btnNpcRemove);
             this.pnlNPC.Controls.Add(this.btnNpcCreate);
-            this.pnlNPC.Location = new System.Drawing.Point(0, 0);
+            this.pnlNPC.Location = new System.Drawing.Point(180, 0);
             this.pnlNPC.Name = "pnlNPC";
             this.pnlNPC.Size = new System.Drawing.Size(171, 47);
             this.pnlNPC.TabIndex = 3;
@@ -104,9 +104,9 @@
             // 
             this.pnlWorkTools.BackColor = System.Drawing.Color.Maroon;
             this.pnlWorkTools.Controls.Add(this.btnNoteAdd);
-            this.pnlWorkTools.Location = new System.Drawing.Point(177, 0);
+            this.pnlWorkTools.Location = new System.Drawing.Point(421, 0);
             this.pnlWorkTools.Name = "pnlWorkTools";
-            this.pnlWorkTools.Size = new System.Drawing.Size(599, 46);
+            this.pnlWorkTools.Size = new System.Drawing.Size(355, 46);
             this.pnlWorkTools.TabIndex = 2;
             // 
             // btnNoteAdd
@@ -122,27 +122,26 @@
             // 
             this.pnlWorkSpace.BackColor = System.Drawing.Color.DarkTurquoise;
             this.pnlWorkSpace.Controls.Add(this.panel1);
-            this.pnlWorkSpace.Location = new System.Drawing.Point(189, 89);
+            this.pnlWorkSpace.Location = new System.Drawing.Point(315, 3);
             this.pnlWorkSpace.Name = "pnlWorkSpace";
-            this.pnlWorkSpace.Size = new System.Drawing.Size(599, 356);
+            this.pnlWorkSpace.Size = new System.Drawing.Size(461, 345);
             this.pnlWorkSpace.TabIndex = 2;
-            this.pnlWorkSpace.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlWorkSpace_Paint);
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Orchid;
             this.panel1.Controls.Add(this.richTextBox1);
             this.panel1.Controls.Add(this.panel2);
-            this.panel1.Location = new System.Drawing.Point(272, 40);
+            this.panel1.Location = new System.Drawing.Point(131, 48);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 200);
+            this.panel1.Size = new System.Drawing.Size(162, 170);
             this.panel1.TabIndex = 0;
             // 
             // richTextBox1
             // 
             this.richTextBox1.Location = new System.Drawing.Point(0, 46);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(200, 151);
+            this.richTextBox1.Size = new System.Drawing.Size(162, 121);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "hello\nHow are you today?\n";
             // 
@@ -151,7 +150,7 @@
             this.panel2.BackColor = System.Drawing.Color.Magenta;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 40);
+            this.panel2.Size = new System.Drawing.Size(162, 40);
             this.panel2.TabIndex = 0;
             // 
             // tsTop
@@ -196,15 +195,74 @@
             this.tsDb1.Text = "Execute DB 1";
             this.tsDb1.Click += new System.EventHandler(this.tsDb1_Click);
             // 
+            // hierarchy2
+            // 
+            this.hierarchy2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hierarchy2.FormattingEnabled = true;
+            this.hierarchy2.ItemHeight = 20;
+            this.hierarchy2.Location = new System.Drawing.Point(180, 3);
+            this.hierarchy2.Name = "hierarchy2";
+            this.hierarchy2.Size = new System.Drawing.Size(131, 344);
+            this.hierarchy2.TabIndex = 4;
+            this.hierarchy2.SelectedIndexChanged += new System.EventHandler(this.hierarchy2_SelectedIndexChanged);
+            // 
+            // pnlWork
+            // 
+            this.pnlWork.BackColor = System.Drawing.Color.PaleVioletRed;
+            this.pnlWork.Controls.Add(this.hierarchy1);
+            this.pnlWork.Controls.Add(this.hierarchy2);
+            this.pnlWork.Controls.Add(this.pnlWorkSpace);
+            this.pnlWork.Location = new System.Drawing.Point(12, 90);
+            this.pnlWork.Name = "pnlWork";
+            this.pnlWork.Size = new System.Drawing.Size(776, 360);
+            this.pnlWork.TabIndex = 5;
+            // 
+            // hierarchy1
+            // 
+            this.hierarchy1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hierarchy1.FormattingEnabled = true;
+            this.hierarchy1.ItemHeight = 20;
+            this.hierarchy1.Location = new System.Drawing.Point(3, 3);
+            this.hierarchy1.Name = "hierarchy1";
+            this.hierarchy1.Size = new System.Drawing.Size(171, 344);
+            this.hierarchy1.TabIndex = 6;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.Khaki;
+            this.panel3.Controls.Add(this.btnLocationRemove);
+            this.panel3.Controls.Add(this.btnLocationCreate);
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(177, 47);
+            this.panel3.TabIndex = 4;
+            // 
+            // btnLocationCreate
+            // 
+            this.btnLocationCreate.Location = new System.Drawing.Point(4, 4);
+            this.btnLocationCreate.Name = "btnLocationCreate";
+            this.btnLocationCreate.Size = new System.Drawing.Size(73, 38);
+            this.btnLocationCreate.TabIndex = 0;
+            this.btnLocationCreate.Text = "Create Location";
+            this.btnLocationCreate.UseVisualStyleBackColor = true;
+            // 
+            // btnLocationRemove
+            // 
+            this.btnLocationRemove.Location = new System.Drawing.Point(101, 4);
+            this.btnLocationRemove.Name = "btnLocationRemove";
+            this.btnLocationRemove.Size = new System.Drawing.Size(73, 38);
+            this.btnLocationRemove.TabIndex = 1;
+            this.btnLocationRemove.Text = "Remove Location";
+            this.btnLocationRemove.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 490);
+            this.Controls.Add(this.pnlWork);
             this.Controls.Add(this.tsTop);
-            this.Controls.Add(this.pnlWorkSpace);
             this.Controls.Add(this.pnlTop);
-            this.Controls.Add(this.itemList);
             this.Name = "Form1";
             this.Text = "NPC Register";
             this.pnlTop.ResumeLayout(false);
@@ -214,14 +272,14 @@
             this.panel1.ResumeLayout(false);
             this.tsTop.ResumeLayout(false);
             this.tsTop.PerformLayout();
+            this.pnlWork.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ListBox itemList;
         private System.Windows.Forms.Panel pnlTop;
         private System.Windows.Forms.Panel pnlWorkSpace;
         private System.Windows.Forms.Button btnNpcCreate;
@@ -237,6 +295,12 @@
         private System.Windows.Forms.ToolStripButton tsCreateDB;
         private System.Windows.Forms.FolderBrowserDialog dlgCreate;
         private System.Windows.Forms.ToolStripButton tsDb1;
+        private System.Windows.Forms.ListBox hierarchy2;
+        private System.Windows.Forms.Panel pnlWork;
+        private System.Windows.Forms.ListBox hierarchy1;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button btnLocationRemove;
+        private System.Windows.Forms.Button btnLocationCreate;
     }
 }
 

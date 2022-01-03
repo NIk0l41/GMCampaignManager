@@ -59,42 +59,38 @@ namespace NPC_Register
         }
 
         void RefreshItemList() {
-            string[] npcNames = new string[publicData.Tables[tableIndex["NPCs"]].Rows.Count];
-            foreach (string name in npcNames) {
-                itemList.Items.Add(name);
+            SqlitePriest priestJulia = new SqlitePriest(conPath);
+            var locationTable = priestJulia.SqliteQuery("SELECT * FROM NPCs");
+            string[] locationNameList = new string[locationTable.Rows.Count];
+            for (int i = 0; i < locationTable.Rows.Count; i++) {
+                locationNameList[i] = locationTable.Rows[i].ItemArray[1].ToString();
+            }
+            foreach (string name in locationNameList) {
+                hierarchy1.Items.Add(name);
             }
         }
         #endregion
 
-        private void pnlWorkSpace_Paint(object sender, PaintEventArgs e)
-        {
+        #region SQL Command Constructors
 
-        }
-
-        #region Update Log Commands
-
-        UpdateLog CreateInventoryInstance(string ownerName) {
-            var valueIndex = new Dictionary<int, object>();
-            valueIndex.Add(1, "_inventory-" + ownerName);
-            var instance = new UpdateLog("", "ItemInstances", UpdateLogType.CREATE);
-            return instance;
-        }
-
-        UpdateLog CreateNpcInstance(string npcName) {
-            var valueIndex = new Dictionary<int, object>();
-            valueIndex.Add(1, npcName);
-            valueIndex.Add(3, rowIndexes[tableIndex["NPCs"]]["_inventory-"]);
-            var instance = new UpdateLog("", "NPCs", UpdateLogType.CREATE, valueIndex);
-            return instance;
-        }
-
-        object GetPrimaryKey() {
-            return null;
-        }
 
         #endregion
 
         #region UI Commands
+
+        #region Hierarchy Commands
+
+        private void hierarchy1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SqlitePriest priestGelignite = new SqlitePriest(conPath);
+            var npcTable = priestGelignite.SqliteNoQuery("SELECT * FROM NPCs WHERE");
+        }
+
+        private void hierarchy2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
 
         #region Tool Strip Items
         private void tsCreateDB_Click(object sender, EventArgs e)
@@ -114,7 +110,10 @@ namespace NPC_Register
 
         private void tsOpenDB_Click(object sender, EventArgs e)
         {
-            SetupProject();
+            //SetupProject();
+            SqlitePriest priestDyson = new SqlitePriest(conPath);
+            priestDyson.OpenConnection();
+            RefreshItemList();
         }
 
         #region Load Test Databases
@@ -130,17 +129,10 @@ namespace NPC_Register
 
         private void btnNpcCreate_Click(object sender, EventArgs e)
         {
-            // Ooo spicy
-            // Prototype Data Manager
-            /// 1) Create Inventory Item
-            // Since all ID based PKs run on autoincrement, the update log's
-            // Primary Key attribute can be null.
-            var logs = new UpdateLog[2];
-            logs[0] = CreateInventoryInstance("Mr Shoebox");
-            /// 2) Create NPC Entry
-            /// ...
+            
         }
 
         #endregion
+
     }
 }
