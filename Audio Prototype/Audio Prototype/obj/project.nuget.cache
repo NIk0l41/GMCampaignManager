@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "nvUWoVudSFYn8GzWxqQrxiP7qVIrx6tWXBPv+6NmZ/ZDvkAl/0r1nW6zZMm7p7FAMsWp/oe1IC7j3uwZxOMYtg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Nicholas Maver\\Desktop\\GitHub\\GMCampaignManager\\Audio Prototype\\Audio Prototype\\Audio Prototype.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Nicholas Maver\\.nuget\\packages\\embedio\\3.4.3\\embedio.3.4.3.nupkg.sha512",
+    "C:\\Users\\Nicholas Maver\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\Nicholas Maver\\.nuget\\packages\\spotifyapi.web\\6.2.2\\spotifyapi.web.6.2.2.nupkg.sha512",
+    "C:\\Users\\Nicholas Maver\\.nuget\\packages\\spotifyapi.web.auth\\6.2.2\\spotifyapi.web.auth.6.2.2.nupkg.sha512",
+    "C:\\Users\\Nicholas Maver\\.nuget\\packages\\unosquare.swan.lite\\3.0.0\\unosquare.swan.lite.3.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

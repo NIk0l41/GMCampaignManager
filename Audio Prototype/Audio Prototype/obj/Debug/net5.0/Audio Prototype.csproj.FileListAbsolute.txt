@@ -1,0 +1,22 @@
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Audio Prototype\Audio Prototype\bin\Debug\net5.0\Audio Prototype.exe
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Audio Prototype\Audio Prototype\bin\Debug\net5.0\Audio Prototype.deps.json
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Audio Prototype\Audio Prototype\bin\Debug\net5.0\Audio Prototype.runtimeconfig.json
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Audio Prototype\Audio Prototype\bin\Debug\net5.0\Audio Prototype.runtimeconfig.dev.json
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Audio Prototype\Audio Prototype\bin\Debug\net5.0\Audio Prototype.dll
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Audio Prototype\Audio Prototype\bin\Debug\net5.0\ref\Audio Prototype.dll
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Audio Prototype\Audio Prototype\bin\Debug\net5.0\Audio Prototype.pdb
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Audio Prototype\Audio Prototype\bin\Debug\net5.0\EmbedIO.dll
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Audio Prototype\Audio Prototype\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Audio Prototype\Audio Prototype\bin\Debug\net5.0\SpotifyAPI.Web.dll
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Audio Prototype\Audio Prototype\bin\Debug\net5.0\SpotifyAPI.Web.Auth.dll
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Audio Prototype\Audio Prototype\bin\Debug\net5.0\Swan.Lite.dll
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Audio Prototype\Audio Prototype\obj\Debug\net5.0\Audio Prototype.csproj.AssemblyReference.cache
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Audio Prototype\Audio Prototype\obj\Debug\net5.0\Audio Prototype.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Audio Prototype\Audio Prototype\obj\Debug\net5.0\Audio Prototype.AssemblyInfoInputs.cache
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Audio Prototype\Audio Prototype\obj\Debug\net5.0\Audio Prototype.AssemblyInfo.cs
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Audio Prototype\Audio Prototype\obj\Debug\net5.0\Audio Prototype.csproj.CoreCompileInputs.cache
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Audio Prototype\Audio Prototype\obj\Debug\net5.0\Audio Prototype.csproj.CopyComplete
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Audio Prototype\Audio Prototype\obj\Debug\net5.0\Audio Prototype.dll
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Audio Prototype\Audio Prototype\obj\Debug\net5.0\ref\Audio Prototype.dll
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Audio Prototype\Audio Prototype\obj\Debug\net5.0\Audio Prototype.pdb
+C:\Users\Nicholas Maver\Desktop\GitHub\GMCampaignManager\Audio Prototype\Audio Prototype\obj\Debug\net5.0\Audio Prototype.genruntimeconfig.cache

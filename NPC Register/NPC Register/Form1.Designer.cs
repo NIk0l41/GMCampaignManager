@@ -30,6 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.pnlTop = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.btnLocationRemove = new System.Windows.Forms.Button();
+            this.btnLocationCreate = new System.Windows.Forms.Button();
             this.pnlNPC = new System.Windows.Forms.Panel();
             this.btnNpcRemove = new System.Windows.Forms.Button();
             this.btnNpcCreate = new System.Windows.Forms.Button();
@@ -47,17 +50,14 @@
             this.hierarchy2 = new System.Windows.Forms.ListBox();
             this.pnlWork = new System.Windows.Forms.Panel();
             this.hierarchy1 = new System.Windows.Forms.ListBox();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.btnLocationCreate = new System.Windows.Forms.Button();
-            this.btnLocationRemove = new System.Windows.Forms.Button();
             this.pnlTop.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.pnlNPC.SuspendLayout();
             this.pnlWorkTools.SuspendLayout();
             this.pnlWorkSpace.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tsTop.SuspendLayout();
             this.pnlWork.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlTop
@@ -65,11 +65,38 @@
             this.pnlTop.BackColor = System.Drawing.Color.Tomato;
             this.pnlTop.Controls.Add(this.panel3);
             this.pnlTop.Controls.Add(this.pnlNPC);
-            this.pnlTop.Controls.Add(this.pnlWorkTools);
             this.pnlTop.Location = new System.Drawing.Point(12, 37);
             this.pnlTop.Name = "pnlTop";
-            this.pnlTop.Size = new System.Drawing.Size(776, 46);
+            this.pnlTop.Size = new System.Drawing.Size(995, 46);
             this.pnlTop.TabIndex = 1;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.Khaki;
+            this.panel3.Controls.Add(this.btnLocationRemove);
+            this.panel3.Controls.Add(this.btnLocationCreate);
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(177, 47);
+            this.panel3.TabIndex = 4;
+            // 
+            // btnLocationRemove
+            // 
+            this.btnLocationRemove.Location = new System.Drawing.Point(101, 4);
+            this.btnLocationRemove.Name = "btnLocationRemove";
+            this.btnLocationRemove.Size = new System.Drawing.Size(73, 38);
+            this.btnLocationRemove.TabIndex = 1;
+            this.btnLocationRemove.Text = "Remove Location";
+            this.btnLocationRemove.UseVisualStyleBackColor = true;
+            // 
+            // btnLocationCreate
+            // 
+            this.btnLocationCreate.Location = new System.Drawing.Point(4, 4);
+            this.btnLocationCreate.Name = "btnLocationCreate";
+            this.btnLocationCreate.Size = new System.Drawing.Size(73, 38);
+            this.btnLocationCreate.TabIndex = 0;
+            this.btnLocationCreate.Text = "Create Location";
+            this.btnLocationCreate.UseVisualStyleBackColor = true;
             // 
             // pnlNPC
             // 
@@ -104,7 +131,7 @@
             // 
             this.pnlWorkTools.BackColor = System.Drawing.Color.Maroon;
             this.pnlWorkTools.Controls.Add(this.btnNoteAdd);
-            this.pnlWorkTools.Location = new System.Drawing.Point(421, 0);
+            this.pnlWorkTools.Location = new System.Drawing.Point(652, 37);
             this.pnlWorkTools.Name = "pnlWorkTools";
             this.pnlWorkTools.Size = new System.Drawing.Size(355, 46);
             this.pnlWorkTools.TabIndex = 2;
@@ -122,9 +149,9 @@
             // 
             this.pnlWorkSpace.BackColor = System.Drawing.Color.DarkTurquoise;
             this.pnlWorkSpace.Controls.Add(this.panel1);
-            this.pnlWorkSpace.Location = new System.Drawing.Point(315, 3);
+            this.pnlWorkSpace.Location = new System.Drawing.Point(341, 3);
             this.pnlWorkSpace.Name = "pnlWorkSpace";
-            this.pnlWorkSpace.Size = new System.Drawing.Size(461, 345);
+            this.pnlWorkSpace.Size = new System.Drawing.Size(651, 431);
             this.pnlWorkSpace.TabIndex = 2;
             // 
             // panel1
@@ -161,7 +188,7 @@
             this.tsDb1});
             this.tsTop.Location = new System.Drawing.Point(0, 0);
             this.tsTop.Name = "tsTop";
-            this.tsTop.Size = new System.Drawing.Size(800, 25);
+            this.tsTop.Size = new System.Drawing.Size(1007, 25);
             this.tsTop.TabIndex = 3;
             this.tsTop.Text = "toolStrip1";
             // 
@@ -202,7 +229,7 @@
             this.hierarchy2.ItemHeight = 20;
             this.hierarchy2.Location = new System.Drawing.Point(180, 3);
             this.hierarchy2.Name = "hierarchy2";
-            this.hierarchy2.Size = new System.Drawing.Size(131, 344);
+            this.hierarchy2.Size = new System.Drawing.Size(155, 424);
             this.hierarchy2.TabIndex = 4;
             this.hierarchy2.SelectedIndexChanged += new System.EventHandler(this.hierarchy2_SelectedIndexChanged);
             // 
@@ -214,7 +241,7 @@
             this.pnlWork.Controls.Add(this.pnlWorkSpace);
             this.pnlWork.Location = new System.Drawing.Point(12, 90);
             this.pnlWork.Name = "pnlWork";
-            this.pnlWork.Size = new System.Drawing.Size(776, 360);
+            this.pnlWork.Size = new System.Drawing.Size(995, 445);
             this.pnlWork.TabIndex = 5;
             // 
             // hierarchy1
@@ -224,48 +251,23 @@
             this.hierarchy1.ItemHeight = 20;
             this.hierarchy1.Location = new System.Drawing.Point(3, 3);
             this.hierarchy1.Name = "hierarchy1";
-            this.hierarchy1.Size = new System.Drawing.Size(171, 344);
+            this.hierarchy1.Size = new System.Drawing.Size(171, 424);
             this.hierarchy1.TabIndex = 6;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.Khaki;
-            this.panel3.Controls.Add(this.btnLocationRemove);
-            this.panel3.Controls.Add(this.btnLocationCreate);
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(177, 47);
-            this.panel3.TabIndex = 4;
-            // 
-            // btnLocationCreate
-            // 
-            this.btnLocationCreate.Location = new System.Drawing.Point(4, 4);
-            this.btnLocationCreate.Name = "btnLocationCreate";
-            this.btnLocationCreate.Size = new System.Drawing.Size(73, 38);
-            this.btnLocationCreate.TabIndex = 0;
-            this.btnLocationCreate.Text = "Create Location";
-            this.btnLocationCreate.UseVisualStyleBackColor = true;
-            // 
-            // btnLocationRemove
-            // 
-            this.btnLocationRemove.Location = new System.Drawing.Point(101, 4);
-            this.btnLocationRemove.Name = "btnLocationRemove";
-            this.btnLocationRemove.Size = new System.Drawing.Size(73, 38);
-            this.btnLocationRemove.TabIndex = 1;
-            this.btnLocationRemove.Text = "Remove Location";
-            this.btnLocationRemove.UseVisualStyleBackColor = true;
+            this.hierarchy1.SelectedIndexChanged += new System.EventHandler(this.hierarchy1_SelectedIndexChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 490);
+            this.ClientSize = new System.Drawing.Size(1007, 536);
             this.Controls.Add(this.pnlWork);
             this.Controls.Add(this.tsTop);
+            this.Controls.Add(this.pnlWorkTools);
             this.Controls.Add(this.pnlTop);
             this.Name = "Form1";
             this.Text = "NPC Register";
             this.pnlTop.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             this.pnlNPC.ResumeLayout(false);
             this.pnlWorkTools.ResumeLayout(false);
             this.pnlWorkSpace.ResumeLayout(false);
@@ -273,7 +275,6 @@
             this.tsTop.ResumeLayout(false);
             this.tsTop.PerformLayout();
             this.pnlWork.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

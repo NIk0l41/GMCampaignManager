@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NPC_Register
 {
-    class SqlitePriest
+    public class SqlitePriest
     {
         SQLiteConnection conn;
         bool isOpenConnection;
@@ -19,16 +19,20 @@ namespace NPC_Register
         }
 
         public void OpenConnection() {
-            if (!isOpenConnection)
+            if (!isOpenConnection) {
                 conn.Open();
+                isOpenConnection = true;
+            }
         }
 
         public void CloseConnection() {
-            if (isOpenConnection)
+            if (isOpenConnection) {
                 conn.Close();
+                isOpenConnection = false;
+            }
         }
 
-        public void SqliteNoQuery(string noQuery) {
+        public void SqliteCommand(string noQuery) {
             var cmd = conn.CreateCommand();
             cmd.CommandText = noQuery;
             cmd.ExecuteNonQuery();
@@ -41,5 +45,18 @@ namespace NPC_Register
             adapter.Dispose();
             return result;
         }
+
+        #region Dependent Commands
+        public void ClearDbContents() {
+            SqliteCommand("DELETE FROM `Notes` WHERE noteID IS NOT NULL;");
+            SqliteCommand("DELETE FROM `HasAccessToCatalogue` WHERE npcName IS NOT NULL;");
+            SqliteCommand("DELETE FROM `NPCs` WHERE npcName IS NOT NULL;");
+            SqliteCommand("DELETE FROM `Locations` WHERE locationID IS NOT NULL;");
+            SqliteCommand("DELETE FROM `CatalogueEntries` WHERE catalogueID IS NOT NULL;");
+            SqliteCommand("DELETE FROM `ItemInstances` WHERE instanceID IS NOT NULL;");
+            SqliteCommand("DELETE FROM `CatalogueData` WHERE catalogueID IS NOT NULL;");
+            SqliteCommand("DELETE FROM `itemTemplates` WHERE itemID IS NOT NULL;");
+        }
+        #endregion
     }
 }

@@ -22,52 +22,21 @@ namespace NPC_Register
         }
 
         #region On Project Load
-        public DataSet ReadDatabase()
-        {
-            var dataSet = new DataSet();
-            connection.Open();
-            #region Load Tables
 
-            dataSet.Tables.Add(ReturnTable("ItemTemplates"));
-            dataSet.Tables.Add(ReturnTable("CatalogueData"));
-            dataSet.Tables.Add(ReturnTable("ItemInstances"));
-            dataSet.Tables.Add(ReturnTable("CatalogueEntries"));
-            dataSet.Tables.Add(ReturnTable("NPCs"));
-            dataSet.Tables.Add(ReturnTable("Locations"));
-            dataSet.Tables.Add(ReturnTable("HasAccessToCatalogue"));
-
-            #endregion
-
-            connection.Close();
-            return dataSet;
-        }
-
-        DataTable ReturnTable(string tableName)
-        {
-            //Ensure that the function that calls this one opens and closes the connection!
-            if (string.IsNullOrEmpty(tableName.Trim()))
-                return null;
-            var query = "SELECT * FROM " + tableName;
-            var output = new DataTable(tableName);
-
-            try
-            {
+        /// <summary>
+        /// DataTable containing 'query' results
+        /// </summary>
+        /// <param name="query">SQLite Query</param>
+        /// <returns>SQL Query Results</returns>
+        DataTable SqliteQuery(string query) {
+            try {
+                var output = new DataTable();
                 var adapter = new SQLiteDataAdapter(query, connection);
                 adapter.Fill(output);
                 adapter.Dispose();
-                // If a table has a single autoincrement primarky key, we enable
-                // that functionality
-                if (tableName == "CatalogueEntries")
-                {
-
-                }
-                else {
-                    output.Columns[0].AutoIncrement = true;
-                }
                 return output;
             }
-            catch
-            {
+            catch {
                 return null;
             }
         }
@@ -146,12 +115,6 @@ namespace NPC_Register
         private void SqliteNoQuery(string command) {
             cmd.CommandText = command;
             cmd.ExecuteNonQuery();
-        }
-
-        public void LoadSqlScript(string sqlScript) {
-            connection.Open();
-            SqliteNoQuery(sqlScript);
-            connection.Close();
         }
 
         public void CreateDatabase() {
