@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -40,6 +41,12 @@ namespace NPC_Register
         Dictionary<int, int> h2NpcIndex;
         Dictionary<int, int> h2CatalogueIndex;
         List<int> h2IndexTracker;
+
+        // Note Movement in Workspace
+        Point initMousePos;
+        bool mouseDown;
+        bool mouseMove;
+
         
 
         public Form1()
@@ -217,12 +224,27 @@ namespace NPC_Register
 
         #endregion
 
-        private void btnNpcCreate_Click(object sender, EventArgs e)
+        #endregion
+
+        private void pnlNoteMoveTest_MouseDown(object sender, MouseEventArgs e)
         {
-            
+            lblNoteIsDown.Text = "True";
         }
 
-        #endregion
+        private void pnlNoteMoveTest_MouseUp(object sender, MouseEventArgs e)
+        {
+            lblNoteIsDown.Text = "False";
+        }
+
+        private void pnlNoteMoveTest_MouseMove(object sender, MouseEventArgs e)
+        {
+            lblNoteIsMove.Text = "True";
+        }
+
+        private void pnlNoteMoveTest_MouseHover(object sender, EventArgs e)
+        {
+            lblNoteIsMove.Text = "False";
+        }
     }
 
 }

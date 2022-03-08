@@ -41,7 +41,7 @@
             this.pnlWorkSpace = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.pnlNoteMoveTest = new System.Windows.Forms.Panel();
             this.tsTop = new System.Windows.Forms.ToolStrip();
             this.tsOpenDB = new System.Windows.Forms.ToolStripButton();
             this.tsCreateDB = new System.Windows.Forms.ToolStripButton();
@@ -50,6 +50,8 @@
             this.hierarchy2 = new System.Windows.Forms.ListBox();
             this.pnlWork = new System.Windows.Forms.Panel();
             this.hierarchy1 = new System.Windows.Forms.ListBox();
+            this.lblNoteIsDown = new System.Windows.Forms.Label();
+            this.lblNoteIsMove = new System.Windows.Forms.Label();
             this.pnlTop.SuspendLayout();
             this.panel3.SuspendLayout();
             this.pnlNPC.SuspendLayout();
@@ -82,6 +84,7 @@
             // 
             // btnLocationRemove
             // 
+            this.btnLocationRemove.Enabled = false;
             this.btnLocationRemove.Location = new System.Drawing.Point(101, 4);
             this.btnLocationRemove.Name = "btnLocationRemove";
             this.btnLocationRemove.Size = new System.Drawing.Size(73, 38);
@@ -110,6 +113,7 @@
             // 
             // btnNpcRemove
             // 
+            this.btnNpcRemove.Enabled = false;
             this.btnNpcRemove.Location = new System.Drawing.Point(82, 3);
             this.btnNpcRemove.Name = "btnNpcRemove";
             this.btnNpcRemove.Size = new System.Drawing.Size(86, 39);
@@ -119,13 +123,13 @@
             // 
             // btnNpcCreate
             // 
+            this.btnNpcCreate.Enabled = false;
             this.btnNpcCreate.Location = new System.Drawing.Point(3, 3);
             this.btnNpcCreate.Name = "btnNpcCreate";
             this.btnNpcCreate.Size = new System.Drawing.Size(73, 39);
             this.btnNpcCreate.TabIndex = 0;
             this.btnNpcCreate.Text = "Create NPC";
             this.btnNpcCreate.UseVisualStyleBackColor = true;
-            this.btnNpcCreate.Click += new System.EventHandler(this.btnNpcCreate_Click);
             // 
             // pnlWorkTools
             // 
@@ -138,6 +142,7 @@
             // 
             // btnNoteAdd
             // 
+            this.btnNoteAdd.Enabled = false;
             this.btnNoteAdd.Location = new System.Drawing.Point(3, 3);
             this.btnNoteAdd.Name = "btnNoteAdd";
             this.btnNoteAdd.Size = new System.Drawing.Size(86, 39);
@@ -148,7 +153,10 @@
             // pnlWorkSpace
             // 
             this.pnlWorkSpace.BackColor = System.Drawing.Color.DarkTurquoise;
+            this.pnlWorkSpace.Controls.Add(this.lblNoteIsMove);
+            this.pnlWorkSpace.Controls.Add(this.lblNoteIsDown);
             this.pnlWorkSpace.Controls.Add(this.panel1);
+            this.pnlWorkSpace.Controls.Add(this.pnlNoteMoveTest);
             this.pnlWorkSpace.Location = new System.Drawing.Point(341, 3);
             this.pnlWorkSpace.Name = "pnlWorkSpace";
             this.pnlWorkSpace.Size = new System.Drawing.Size(651, 431);
@@ -158,7 +166,6 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.Orchid;
             this.panel1.Controls.Add(this.richTextBox1);
-            this.panel1.Controls.Add(this.panel2);
             this.panel1.Location = new System.Drawing.Point(131, 48);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(162, 170);
@@ -172,13 +179,17 @@
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "hello\nHow are you today?\n";
             // 
-            // panel2
+            // pnlNoteMoveTest
             // 
-            this.panel2.BackColor = System.Drawing.Color.Magenta;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(162, 40);
-            this.panel2.TabIndex = 0;
+            this.pnlNoteMoveTest.BackColor = System.Drawing.Color.Magenta;
+            this.pnlNoteMoveTest.Location = new System.Drawing.Point(349, 48);
+            this.pnlNoteMoveTest.Name = "pnlNoteMoveTest";
+            this.pnlNoteMoveTest.Size = new System.Drawing.Size(162, 40);
+            this.pnlNoteMoveTest.TabIndex = 0;
+            this.pnlNoteMoveTest.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlNoteMoveTest_MouseDown);
+            this.pnlNoteMoveTest.MouseHover += new System.EventHandler(this.pnlNoteMoveTest_MouseHover);
+            this.pnlNoteMoveTest.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnlNoteMoveTest_MouseMove);
+            this.pnlNoteMoveTest.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pnlNoteMoveTest_MouseUp);
             // 
             // tsTop
             // 
@@ -255,6 +266,24 @@
             this.hierarchy1.TabIndex = 6;
             this.hierarchy1.SelectedIndexChanged += new System.EventHandler(this.hierarchy1_SelectedIndexChanged);
             // 
+            // lblNoteIsDown
+            // 
+            this.lblNoteIsDown.AutoSize = true;
+            this.lblNoteIsDown.Location = new System.Drawing.Point(476, 174);
+            this.lblNoteIsDown.Name = "lblNoteIsDown";
+            this.lblNoteIsDown.Size = new System.Drawing.Size(35, 13);
+            this.lblNoteIsDown.TabIndex = 1;
+            this.lblNoteIsDown.Text = "label1";
+            // 
+            // lblNoteIsMove
+            // 
+            this.lblNoteIsMove.AutoSize = true;
+            this.lblNoteIsMove.Location = new System.Drawing.Point(468, 204);
+            this.lblNoteIsMove.Name = "lblNoteIsMove";
+            this.lblNoteIsMove.Size = new System.Drawing.Size(35, 13);
+            this.lblNoteIsMove.TabIndex = 2;
+            this.lblNoteIsMove.Text = "label2";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -271,6 +300,7 @@
             this.pnlNPC.ResumeLayout(false);
             this.pnlWorkTools.ResumeLayout(false);
             this.pnlWorkSpace.ResumeLayout(false);
+            this.pnlWorkSpace.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.tsTop.ResumeLayout(false);
             this.tsTop.PerformLayout();
@@ -290,7 +320,7 @@
         private System.Windows.Forms.ToolStrip tsTop;
         private System.Windows.Forms.ToolStripButton tsOpenDB;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel pnlNoteMoveTest;
         private System.Windows.Forms.Button btnNoteAdd;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.ToolStripButton tsCreateDB;
@@ -302,6 +332,8 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btnLocationRemove;
         private System.Windows.Forms.Button btnLocationCreate;
+        private System.Windows.Forms.Label lblNoteIsMove;
+        private System.Windows.Forms.Label lblNoteIsDown;
     }
 }
 
